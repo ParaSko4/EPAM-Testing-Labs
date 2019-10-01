@@ -6,10 +6,7 @@ namespace TriangleInequality
     {
         public static bool TriangleInequalityMethod(double x, double y, double z)
         {
-            if (x + y > z && x < y + z && y < x + z && x != 0 && y != 0 && z != 0)
-                return true;
-            else
-                return false;
+            return (x + y > z && x < y + z && y < x + z && x != 0 && y != 0 && z != 0);
         }
 
         static void Main(string[] args)
