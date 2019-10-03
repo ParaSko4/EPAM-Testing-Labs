@@ -4,7 +4,7 @@ namespace TriangleInequality
 {
     public class Program
     {
-        public static bool TriangleInequalityMethod(double x, double y, double z)
+        public static bool IsTriangle(double x, double y, double z)
         {
             return (x + y > z && x < y + z && y < x + z && x != 0 && y != 0 && z != 0);
         }
