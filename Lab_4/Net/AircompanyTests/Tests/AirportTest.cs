@@ -54,7 +54,7 @@ namespace AircompanyTests.Tests
         }
 
         [Test]
-        public void MyTest2()
+        public void GetPassengerPlaneWithMaxPassengersCapacityTest()
         {
             Assert.IsTrue(airport.GetPassengerPlaneWithMaxPassengersCapacity() == planeWithMaxPassengerCapacity);
         }
