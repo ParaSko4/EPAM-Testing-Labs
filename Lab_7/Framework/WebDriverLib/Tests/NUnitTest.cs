@@ -1,21 +1,21 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using PageObject.Pages;
+using Framework.Pages;
+using Framework.Driver;
 
-namespace PageObject
+namespace Framework
 {
     [TestFixture]
     public class FirefoxRequests
     {
         public IWebDriver driver;
+        private const string SITE_URL = "https://www.momondo.by";
 
         [SetUp]
         public void OpenBrouser()
         {
-            driver = new FirefoxDriver();
-            driver.Manage().Window.Maximize();
-            driver.Url = "https://www.momondo.by";
+            driver = DriverSingleton.GetDriver();
+            driver.Url = SITE_URL;
         }
 
         [Test]
@@ -42,10 +42,10 @@ namespace PageObject
             Assert.AreEqual(hotel.get_messageHotelAdvice, "Поиск 8 и более номеров на HotelPlanner.com");
         }
 
-        [TearDown]
-        public void CloseBrouser()
-        {
-            driver.Close();
-        }
+        //[TearDown]
+        //public void CloseBrouser()
+        //{
+        //    DriverSingleton.CloseDriver();
+        //}
     }
 }
