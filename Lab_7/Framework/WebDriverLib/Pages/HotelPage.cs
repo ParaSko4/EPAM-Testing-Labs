@@ -1,8 +1,6 @@
-﻿using Framework.Models;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Threading;
 
 namespace Framework.Pages
 {
@@ -17,8 +15,6 @@ namespace Framework.Pages
         public HotelPage(IWebDriver driver)
         {
             this.driver = driver;
-            driver.Url = SITE_URL;
-
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(TIME_WAIT));
         }
 
@@ -36,70 +32,14 @@ namespace Framework.Pages
             }
         }
 
-        private IWebElement button_Search
-        {
-            get { return driver.FindElement(By.XPath(".//button[@aria-label='Найти отели']")); }
-        }
-        
-        private IWebElement toggle_Notification
-        {
-            get 
-            {
-                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//input[@type='checkbox']")));
-                return wait.Until(drv => drv.FindElement(By.XPath(".//input[@type='checkbox']"))); 
-            }
-        }
-
-        private IWebElement div_Input
-        {
-            get { return driver.FindElement(By.XPath(".//div[@data-placeholder='Введите город, аэропорт, адрес или место']")); }
-        }
-
-        private IWebElement input_Value
-        {
-            get { return driver.FindElement(By.XPath(".//input[@aria-label='Место назначения']")); }
-        }
-
-        private IWebElement input_Accept_First_Value
-        {
-            get 
-            {
-                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//div[@class='Common-Widgets-Text-InputModal-smarty-content visible']//ul//li[@class='city']")));
-                return driver.FindElement(By.XPath(".//div[@class='Common-Widgets-Text-InputModal-smarty-content visible']//ul//li[@class='city']")); 
-            }
-        }
-        private IWebElement button_Reset
-        {
-            get 
-            {
-                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//div[@class='reset']")));
-                return driver.FindElement(By.XPath(".//div[@class='reset']")); 
-            }
-        }
-
         public string get_HotelAdvice
         {
             get { return driver.FindElement(By.XPath("//a[contains(text(),'Поиск 8 и более номеров на HotelPlanner.com')]")).Text; }
         }
 
-        public string get_ButtonMailDisabledInfo
+        public HotelPage OpenHotelPage()
         {
-            get { return driver.FindElement(By.XPath(".//div[@class='driveByForm']//button")).GetAttribute("disabled"); }
-        }
-
-        public string get_EmptyValueMessage
-        {
-            get { return driver.FindElement(By.XPath(".//ul[@class='errorMessages']//li")).Text; }
-        }
-
-        public string get_SelectedStar
-        {
-            get { return wait.Until(drv => drv.FindElement(By.XPath(".//div[@class='star-card card-any selected']//div//div")).Text); }
-        }
-
-        public HotelPage PressToggleNotification()
-        {
-            toggle_Notification.Click();
+            driver.Url = SITE_URL;
             return this;
         }
 
@@ -115,27 +55,6 @@ namespace Framework.Pages
             {
                 buttonIncrement_Rooms.Click();
             }
-            return this;
-        }
-
-        public HotelPage InputArrivalCityValue(FlightsModel value)
-        {
-            div_Input.Click();
-            input_Value.SendKeys(value.Arrival_City);
-            input_Accept_First_Value.Click();
-            return this;
-        }
-
-        public HotelPage PressSearch()
-        {
-            button_Search.Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//div[@class='reset']")));
-            return this;
-        }
-
-        public HotelPage PressReset()
-        {
-            button_Reset.Click();
             return this;
         }
     }
