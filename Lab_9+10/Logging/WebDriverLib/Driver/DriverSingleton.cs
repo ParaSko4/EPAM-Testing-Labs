@@ -23,7 +23,9 @@ namespace Framework.Driver
                         break;
                     default:
                         new DriverManager().SetUpDriver(new FirefoxConfig());
-                        driver = new FirefoxDriver();
+                        FirefoxOptions options = new FirefoxOptions();
+                        options.BrowserExecutableLocation = ("C:\\Program Files\\Firefox Developer Edition\\firefox.exe");
+                        driver = new FirefoxDriver(options);
                         break;
                 }
                 driver.Manage().Window.Maximize();
