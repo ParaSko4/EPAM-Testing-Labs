@@ -25,7 +25,7 @@ namespace Framework.Service
 
         public static string GetData(string key)
         {
-            return ConfigFile.AppSettings.Settings[key]?.Value;
+            return ConfigFile.AppSettings.Settings[key].Value;
         }
     }
 }
