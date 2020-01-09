@@ -28,7 +28,7 @@ namespace WebDriverLib.Tests
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
                 string screenshot_Name = DateTime.Now.ToString("yy-MM-dd_hh-mm-ss") + ".png";
-                Logger.Log.Error($": test failed, taking screenshot, name [{screenshot_Name}]");
+                Logger.Log.Error(": test failed, taking screenshot");
                 string screenshots_Folder = AppDomain.CurrentDomain.BaseDirectory + @"\Logging\Errors\";
                 Directory.CreateDirectory(screenshots_Folder);
                 ((ITakesScreenshot)driver).GetScreenshot()

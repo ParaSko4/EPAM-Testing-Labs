@@ -133,7 +133,7 @@ namespace Framework.Pages
         {
             button_close_icon.Click();
             input_DepartureCity.SendKeys(value.Departure_City);
-            Logger.Log.Info($": input departure city value - [{value.Departure_City}]");
+            Logger.Log.Info(": input departure city");
             return this;
         }
 
@@ -141,7 +141,7 @@ namespace Framework.Pages
         {
             div_ArrivalCity.Click();
             input_ArrivalCity.SendKeys(value.Arrival_City);
-            Logger.Log.Info($": input arrival city value - [{value.Arrival_City}]");
+            Logger.Log.Info(": input arrival city");
             return this;
         }
 
